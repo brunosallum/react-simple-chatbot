@@ -1,7 +1,7 @@
 {
   "name": "emdia-chatbot",
-  "version": "0.6.1",
-  "description": "React Simple Chatbot",
+  "version": "0.6.2",
+  "description": "emDia Chatbot",
   "main": "dist/react-simple-chatbot.js",
   "scripts": {
     "lint": "./node_modules/.bin/eslint lib/*.jsx",
@@ -36,7 +36,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/LucasBassetti/react-simple-chatbot"
+    "url": "https://github.com/brunosallum/react-simple-chatbot"
   },
   "keywords": [
     "react",
@@ -46,9 +46,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/LucasBassetti/react-simple-chatbot/issues"
+    "url": "https://github.com/brunosallum/react-simple-chatbot/issues"
   },
-  "homepage": "https://github.com/LucasBassetti/react-simple-chatbot#readme",
+  "homepage": "https://github.com/brunosallum/react-simple-chatbot#readme",
   "devDependencies": {
     "@babel/cli": "^7.1.2",
     "@babel/core": "^7.1.2",
