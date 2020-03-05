@@ -1,6 +1,6 @@
 {
   "name": "emdia-chatbot",
-  "version": "0.6.2",
+  "version": "0.6.6",
   "description": "emDia Chatbot",
   "main": "dist/react-simple-chatbot.js",
   "scripts": {

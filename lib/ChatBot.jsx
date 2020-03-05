@@ -257,6 +257,9 @@ class ChatBot extends Component {
     if (data && data.trigger) {
       currentStep.trigger = this.getTriggeredStep(data.trigger, data.value);
     }
+    if (data && data.optionID) {
+      currentStep.optionID = data.optionID;
+    }
 
     if (isEnd) {
       this.handleEnd();
@@ -269,7 +272,8 @@ class ChatBot extends Component {
       currentStep = Object.assign({}, currentStep, option, defaultUserSettings, {
         user: true,
         message: option.label,
-        trigger
+        trigger,
+        optionID: option.optionID
       });
 
       renderedSteps.pop();
@@ -656,6 +660,7 @@ class ChatBot extends Component {
             className="rsc-float-button"
             style={floatingStyle}
             opened={opened}
+            id="icon-bot"
             onClick={() => this.toggleChatBot(true)}
           >
             {typeof floatingIcon === 'string' ? <FloatingIcon src={floatingIcon} /> : floatingIcon}

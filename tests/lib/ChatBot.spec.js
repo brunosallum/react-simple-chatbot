@@ -2,21 +2,13 @@ import React, { Component } from 'react';
 import { describe, it, before, after } from 'mocha';
 import { expect } from 'chai';
 import { mount } from 'enzyme';
+import { parse } from 'flatted';
 import ChatBot from '../../lib/ChatBot';
-import {
-  ChatBotContainer,
-  FloatButton,
-  Header,
-  HeaderIcon,
-} from '../../lib/components';
+import { ChatBotContainer, FloatButton, Header, HeaderIcon } from '../../lib/components';
 import { CloseIcon } from '../../lib/icons';
 import { TextStep } from '../../lib/steps_components';
 
-import { parse } from 'flatted';
-
-const CustomComponent = () => (
-  <div />
-);
+const CustomComponent = () => <div />;
 
 describe('ChatBot', () => {
   describe('Simple', () => {
@@ -31,52 +23,52 @@ describe('ChatBot', () => {
           {
             id: '1',
             message: 'Hello World',
-            trigger: 'user',
+            trigger: 'user'
           },
           {
             id: 'user',
             user: true,
-            trigger: 'update',
+            trigger: 'update'
           },
           {
             id: 'update',
             update: 'user',
-            trigger: () => '2',
+            trigger: () => '2'
           },
           {
             id: '2',
             component: <CustomComponent />,
-            trigger: '3',
+            trigger: '3'
           },
           {
             id: '3',
             component: <CustomComponent />,
             asMessage: true,
-            trigger: '4',
+            trigger: '4'
           },
           {
             id: '4',
             component: <CustomComponent />,
             replace: true,
-            trigger: '5',
+            trigger: '5'
           },
           {
             id: '5',
             options: [
               { value: 'op1', label: 'Option 1', trigger: () => '6' },
-              { value: 'op2', label: 'Option 2', trigger: '6' },
-            ],
+              { value: 'op2', label: 'Option 2', trigger: '6' }
+            ]
           },
           {
             id: '6',
             message: 'Bye!',
-            end: true,
-          },
+            end: true
+          }
         ]}
-      />,
+      />
     );
 
-    before((done) => {
+    before(done => {
       wrapper.setState({ inputValue: 'test' });
       wrapper.find('input.rsc-input').simulate('keyPress', { key: 'Enter' });
 
@@ -98,7 +90,7 @@ describe('ChatBot', () => {
       expect(wrapper.find(ChatBot).length).to.be.equal(1);
     });
 
-    it('should render with class \'classname-test\'', () => {
+    it("should render with class 'classname-test'", () => {
       expect(wrapper.hasClass('classname-test')).to.be.equal(true);
     });
 
@@ -123,7 +115,7 @@ describe('ChatBot', () => {
   describe('No Header', () => {
     const wrapper = mount(
       <ChatBot
-        hideHeader={true}
+        hideHeader
         botDelay={0}
         userDelay={0}
         customDelay={0}
@@ -132,10 +124,10 @@ describe('ChatBot', () => {
           {
             id: '1',
             message: 'Hello World',
-            end: true,
-          },
+            end: true
+          }
         ]}
-      />,
+      />
     );
 
     it('should be rendered without header', () => {
@@ -155,10 +147,10 @@ describe('ChatBot', () => {
           {
             id: '1',
             message: 'Hello World',
-            end: true,
-          },
+            end: true
+          }
         ]}
-      />,
+      />
     );
 
     it('should be rendered with a custom header', () => {
@@ -170,9 +162,9 @@ describe('ChatBot', () => {
   describe('Floating', () => {
     const wrapper = mount(
       <ChatBot
-        floating={true}
+        floating
         botDelay={0}
-        cache={true}
+        cache
         userDelay={0}
         customDelay={0}
         handleEnd={() => { }}
@@ -180,15 +172,15 @@ describe('ChatBot', () => {
           {
             id: '1',
             message: 'Hello World',
-            trigger: '2',
+            trigger: '2'
           },
           {
             id: '2',
             message: () => 'Bye',
-            end: true,
-          },
+            end: true
+          }
         ]}
-      />,
+      />
     );
 
     it('should be rendered with floating header', () => {
@@ -218,7 +210,7 @@ describe('ChatBot', () => {
         super(props);
 
         this.state = {
-          opened: true,
+          opened: true
         };
 
         this.toggleFloating = this.toggleFloating.bind(this);
@@ -232,11 +224,11 @@ describe('ChatBot', () => {
         const { opened } = this.state;
         return (
           <ChatBot
-            floating={true}
+            floating
             floatingStyle={{
               left: '32px',
               right: 'initial',
-              transformOrigin: 'bottom left',
+              transformOrigin: 'bottom left'
             }}
             opened={opened}
             toggleFloating={this.toggleFloating}
@@ -248,8 +240,8 @@ describe('ChatBot', () => {
               {
                 id: '1',
                 message: 'Hello World',
-                end: true,
-              },
+                end: true
+              }
             ]}
           />
         );
@@ -282,7 +274,9 @@ describe('ChatBot', () => {
     it('should modify the transform-origin style in chatbot container', () => {
       expect(wrapper.find(ChatBotContainer).prop('floatingStyle').left).to.be.equal('32px');
       expect(wrapper.find(ChatBotContainer).prop('floatingStyle').right).to.be.equal('initial');
-      expect(wrapper.find(ChatBotContainer).prop('floatingStyle').transformOrigin).to.be.equal('bottom left');
+      expect(wrapper.find(ChatBotContainer).prop('floatingStyle').transformOrigin).to.be.equal(
+        'bottom left'
+      );
     });
   });
 
@@ -294,10 +288,10 @@ describe('ChatBot', () => {
             id: '1',
             message: 'Hide Input',
             hideInput: true,
-            end: true,
-          },
+            end: true
+          }
         ]}
-      />,
+      />
     );
 
     it('should be rendered without input', () => {
@@ -314,17 +308,17 @@ describe('ChatBot', () => {
             id: '1',
             message: 'Set metadata!',
             metadata: {
-              custom: 'Hello World',
+              custom: 'Hello World'
             },
-            trigger: '2',
+            trigger: '2'
           },
           {
             id: '2',
-            message: params => (params.steps[1].metadata.custom),
-            end: true,
-          },
+            message: params => params.steps[1].metadata.custom,
+            end: true
+          }
         ]}
-      />,
+      />
     );
 
     before(() => {
@@ -359,23 +353,21 @@ describe('ChatBot', () => {
             id: '1',
             message: 'Hide Input',
             inputAttributes: {
-              autoComplete: 'firstname',
+              autoComplete: 'firstname'
             },
-            end: true,
-          },
+            end: true
+          }
         ]}
-      />,
+      />
     );
 
-    it('should be rendered with input to autocomplete on \'firstname\'', () => {
+    it("should be rendered with input to autocomplete on 'firstname'", () => {
       expect(wrapper.find('input.rsc-input').props().autoComplete).to.be.equal('firstname');
     });
   });
-  
+
   describe('Extra control', () => {
-    const CustomControl = () => (
-      <button className="my-button">custom</button>
-    );
+    const CustomControl = () => <button className="my-button">custom</button>;
     const wrapper = mount(
       <ChatBot
         botDelay={10}
@@ -401,7 +393,7 @@ describe('ChatBot', () => {
             end: true
           }
         ]}
-      />,
+      />
     );
 
     it('should be rendered with an extra control beside submit button', () => {
@@ -409,15 +401,14 @@ describe('ChatBot', () => {
     });
 
     it('the extra control should be hidden', () => {
-      console.log("Setting input value");
+      console.log('Setting input value');
       wrapper.setState({ inputValue: 'test' });
-      console.log("Simulate key press");
+      console.log('Simulate key press');
       wrapper.find('input.rsc-input').simulate('keyPress', { key: 'Enter' });
       setTimeout(() => {
-        console.log("testing hidden");
-        expect(wrapper.find('div.rsc-controls button.my-button')).to.have.length(0);  
+        console.log('testing hidden');
+        expect(wrapper.find('div.rsc-controls button.my-button')).to.have.length(0);
       }, 500);
     });
-
   });
 });
